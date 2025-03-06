@@ -21,27 +21,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // Edit action to show the edit form
-    [HttpGet]
-    //public IActionResult Edit(int id)
-    //{
-    //    var item = _todos.FirstOrDefault(t => t.Id == id);
-    //    if (item == null) return NotFound();
-    //    return View(item);
-    //}
 
-    // Post action to update an existing to-do item
-    [HttpPost]
-    //public IActionResult Edit(TodoModel item)
-    //{
-    //    var existingItem = _todos.FirstOrDefault(t => t.Id == item.Id);
-    //    if (existingItem == null) return NotFound();
-
-    //    existingItem.Title = item.Title;
-    //    existingItem.IsCompleted = item.IsCompleted;
-
-    //    return RedirectToAction(nameof(Index));
-    //}
 
     // POST: Update the todo item
     [HttpPost]
