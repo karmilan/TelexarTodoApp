@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TelexarTodoApp.Models.TodoModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Create Form -->
+<h3>Add a New To-Do</h3>
+<form method="post" action="@Url.Action("Create", "Home")">
+    <div>
+        <input type="text" name="Title" placeholder="Enter todo" required />
+        <button type="submit">Add</button>
+    </div>
+</form>
+
+<hr />
+
+<!-- List of Todo Items -->
+<h3>Todo Items</h3>
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* @foreach (var item in Model) *@
+            @* { *@
+            @*     <tr> *@
+            @*         <td>@item.Title</td> *@
+            @*         <td>@(item.IsCompleted ? "Completed" : "Pending")</td> *@
+            @*         <td> *@
+            @*             <a href="@Url.Action("Edit", new { id = item.Id })">Edit</a> *@
+            @*             <a href="@Url.Action("Delete", new { id = item.Id })">Delete</a> *@
+            @*         </td> *@
+            @*     </tr> *@
+            @* } *@
+
+            @foreach (var item in Model)
+            {
+                if (ViewBag.EditId != null && ViewBag.EditId == item.Id)
+                {
+                    <!-- Show Edit Form for the selected todo -->
+                    <tr>
+                        <td colspan="3">
+                            <form method="post" asp-action="Edit">
+                                <input type="hidden" name="Id" value="@item.Id" />
+                                <input type="text" name="Title" value="@item.Title" required />
+                              
+                                <div>
+
+                                <input id="completed" type="checkbox" name="IsCompleted" value="true" @(item.IsCompleted ? "checked" : "") />
+                                    <label for="completed">Completed</label>
+                                </div>
+
+                                <button type="submit">Update</button>
+                                <a asp-action="Index">Cancel</a>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <!-- Show Regular Todo Row -->
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@(item.IsCompleted ? "Completed" : "Pending")</td>
+                        <td>
+                            <a asp-action="Index" asp-route-editId="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No to-do items found.</p>
+}
