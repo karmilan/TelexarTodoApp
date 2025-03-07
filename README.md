@@ -1,12 +1,12 @@
 ## Overview
 
-TelexarTodoApp is a simple and efficient to-do list application designed to help you manage your tasks effectively.
+Telexar TodoApp is a simple Todo list application designed to help you manage your tasks effectively.
 
 ## Features
 
 - Add new todo items.
 - Edit and update existing todo items.
-- Mark todo items as completed (true) or pending (false) using a dropdown.
+- Mark todo items as completed (true) or pending (false) using a checkbox.
 - Delete todo items.
 
 ## Technologies Used
