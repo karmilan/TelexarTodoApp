@@ -9,7 +9,8 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private static List<TodoModel> _todos = new List<TodoModel>();
-    // Create action to handle form submission
+
+    // Add new todo
     [HttpPost]
     public IActionResult Create(TodoModel item)
     {
@@ -23,7 +24,7 @@ public class HomeController : Controller
 
 
 
-    // POST: Update the todo item
+    // Update the todo item
     [HttpPost]
     public IActionResult Edit(TodoModel updatedItem)
     {
@@ -36,7 +37,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // Delete action to delete a to-do item
+    // Delete a todo
     public IActionResult Delete(int id)
     {
         var item = _todos.FirstOrDefault(t => t.Id == id);
@@ -46,16 +47,17 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
+    //Get todos
     public IActionResult Index(int? editId)
     {
         ViewBag.EditId = editId;
         return View(_todos);
     }
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
 
     public IActionResult Privacy()
     {
